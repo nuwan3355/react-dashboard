@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import TopBar from "./Components/Common/TopBar";
+import SideBar from "./Components/Common/SideBar";
+import { makeStyles } from "@mui/styles";
+import Home from "./Layouts/Home/Home";
+import { Grid } from "@mui/material";
 
 function App() {
+  const classes = useStyles();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TopBar />
+      <div className={classes.container}>
+        <Grid container>
+          <Grid item xs={2}>
+            <SideBar />
+          </Grid>
+          <Grid item xs={10}>
+            <Home />
+          </Grid>
+        </Grid>
+      </div>
     </div>
   );
 }
+const useStyles = makeStyles(() => ({
+ 
+}));
 
 export default App;
