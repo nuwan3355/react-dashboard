@@ -12,31 +12,32 @@ import {
   Timeline,
   TrendingUp,
 } from "@mui/icons-material";
+import { NavLink } from "react-router-dom";
 
 const array = [
   {
     name: "Dashboard",
     message: [
-      { icon: <LineStyle />, iconName: "Home" },
-      { icon: <Timeline />, iconName: "Analytics" },
-      { icon: <TrendingUp />, iconName: "Sales" },
+      { icon: <LineStyle />, iconName: "Home", link: "/" },
+      { icon: <Timeline />, iconName: "Analytics", link: "/analytics" },
+      { icon: <TrendingUp />, iconName: "Sales", link: "/sales" },
     ],
   },
   {
     name: "Quick Meny",
     message: [
-      { icon: <Person />, iconName: "User" },
-      { icon: <DateRange />, iconName: "Products" },
-      { icon: <AttachMoney />, iconName: "Transaction" },
-      { icon: <BarChart />, iconName: "Reports" },
+      { icon: <Person />, iconName: "User", link: "/user-list" },
+      { icon: <DateRange />, iconName: "Products", link: "/products" },
+      { icon: <AttachMoney />, iconName: "Transaction", link: "/transaction" },
+      { icon: <BarChart />, iconName: "Reports", link: "/reports" },
     ],
   },
   {
     name: "Notifications",
     message: [
-      { icon: <MailOutline />, iconName: "Mail" },
-      { icon: <Feedback />, iconName: "Feedback" },
-      { icon: <Message />, iconName: "Message" },
+      { icon: <MailOutline />, iconName: "Mail", link: "/mail" },
+      { icon: <Feedback />, iconName: "Feedback", link: "/feedback" },
+      { icon: <Message />, iconName: "Message", link: "/message" },
     ],
   },
 ];
@@ -52,10 +53,21 @@ export default function SideBar() {
               {val.message.map((title, key) => {
                 return (
                   <ul key={key} className={classes.sideBarList}>
-                    <li className={classes.sideBarListItem}>
+                    <NavLink
+                      exact
+                      to={title.link}
+                      activeStyle={{
+                        fontWeight: "bold",
+                        color: "blue",
+                        borderBottom: "1px solid gray",
+                      }}
+                      
+                   
+                      className={classes.sideBarListItem}
+                    >
                       <div className={classes.icon}>{title.icon}</div>
                       {title.iconName}
-                    </li>
+                    </NavLink>
                   </ul>
                 );
               })}
@@ -75,7 +87,6 @@ const useStyles = makeStyles(() => ({
   },
   sideBarWrapper: {
     padding: "20px",
-    color: "#555",
   },
   sideBarMenu: {
     marginBottom: "10px",
@@ -92,6 +103,8 @@ const useStyles = makeStyles(() => ({
     padding: "10px",
     alignItems: "center",
     cursor: "pointer",
+    textDecoration: "none",
+    color: "#555",
   },
   icon: {
     marginRight: "5px",

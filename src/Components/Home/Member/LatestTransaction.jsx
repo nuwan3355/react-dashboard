@@ -43,6 +43,7 @@ export default function LatestTransaction() {
       {transaction.map((val, key) => {
         return (
           <Grid
+            key={key}
             container
             spacing={1}
             style={{ padding: "10px", alignItems: "center" }}
